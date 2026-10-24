@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e193c51820ceba14493d8598f1f0c879
 ModelImporter:
-  serializedVersion: 24200
+  serializedVersion: 24501
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -9,6 +9,7 @@ ModelImporter:
     materialName: 0
     materialSearch: 1
     materialLocation: 1
+    searchTexturesGlobally: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -31,7 +32,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Running
+      name: Tree Monster Running
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
@@ -88,6 +89,8 @@ ModelImporter:
     generateMeshLods: 0
     meshLodGenerationFlags: 0
     maximumMeshLod: -1
+    importUVs: -1
+    importVertexColors: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -107,6 +110,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+    calculateBlendshapeNormalsDeltaFromImportedNormals: 1
   referencedClips: []
   importAnimation: 1
   humanDescription:

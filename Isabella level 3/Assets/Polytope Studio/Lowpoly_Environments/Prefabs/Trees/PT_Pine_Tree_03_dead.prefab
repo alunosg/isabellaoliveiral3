@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1268050992877243359
 Transform:
@@ -43,7 +43,7 @@ LODGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932841404346126693}
-  serializedVersion: 2
+  serializedVersion: 3
   m_LocalReferencePoint: {x: 0.032800674, y: 3.9897761, z: 0.01949501}
   m_Size: 9.0348425
   m_FadeMode: 0
@@ -63,6 +63,7 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4328895901199877293}
   m_Enabled: 1
+  m_GlobalIlluminationLOD: 0
 --- !u!136 &715500462707847039
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2809133384829089810
 Transform:
@@ -192,7 +193,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5340731949621571375
 Transform:
@@ -282,7 +283,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2534358327882011202
 Transform:
