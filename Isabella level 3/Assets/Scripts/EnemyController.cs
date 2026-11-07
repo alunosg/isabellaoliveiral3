@@ -12,6 +12,21 @@ public class EnemyController : MonoBehaviour
     public float attackDistance = 2f;
     public float attackDuration = 2f;
 
+    public Transform attackPoint;
+    public float attackRadius = 1.5f;
+    public float attackHitDelay = 0.75f;
+    public float damage = 1;
+
+    public GameObject attackHitFX;
+    public GameObject hitFX;
+    public GameObject deathFX;
+
+    public AudioSource audioSource;
+    public AudioClip attackSFX;
+    public AudioClip attackHitSFX;
+    public AudioClip hitSFX;
+    public AudioClip deathSFX;
+
     private PlayerController player;
     private float distance = 999;
 
@@ -21,6 +36,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }    
+    
    
     void Update()
     {
@@ -106,17 +122,37 @@ public class EnemyController : MonoBehaviour
 
    }
 
-     void Unlock() => locked = false;
+    void Unlock() => locked = false;
 
-     void EnterAttack()
-     {
+    void EnterAttack()
+    {
         locked = true;
         nav.isStopped = true;
         anim.SetTrigger("Attack");
         anim.SetBool("IsRunning", false);
         state = EnemyStates.Attack;
 
+        if (attackSFX) audioSource.PlayOneShot(attackSFX);
+
         CancelInvoke("Unlock");
         Invoke("Unlock", attackDuration);
-     }
-}
+
+        CancelInvoke("DealDamage");
+        Invoke("DealDamage", attackHitDelay);
+    }
+
+    void DealDamage()
+    {
+        Collider[] hits = Physics.OverlapSphere(attackPoint.position, attackRadius);
+        for(int i = 0; i<hits.Length; i++)
+        {
+            if (hits[i].CompareTag("Player"))
+            {
+                if (attackHitSFX) audioSource.PlayOneShot(attackHitSFX);
+                if (attackHitFX) Instantiate(attackHitSFX, attackPoint.position, attackPoint.rotation);
+
+                player.GetHit(damage);
+           }
+        }
+   }
+}   
