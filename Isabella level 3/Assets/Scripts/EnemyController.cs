@@ -17,9 +17,15 @@ public class EnemyController : MonoBehaviour
     public float attackHitDelay = 0.75f;
     public float damage = 1;
 
+    public float hp = 3;
+    public float hitDuration = 0.3f;
+    public float deathDuration = 5;
+
     public GameObject attackHitFX;
     public GameObject hitFX;
     public GameObject deathFX;
+
+    public GameObject objectOnDeath;
 
     public AudioSource audioSource;
     public AudioClip attackSFX;
@@ -149,10 +155,55 @@ public class EnemyController : MonoBehaviour
             if (hits[i].CompareTag("Player"))
             {
                 if (attackHitSFX) audioSource.PlayOneShot(attackHitSFX);
-                if (attackHitFX) Instantiate(attackHitSFX, attackPoint.position, attackPoint.rotation);
+                if (attackHitFX) Instantiate(attackHitFX, attackPoint.position, attackPoint.rotation);
 
                 player.GetHit(damage);
            }
         }
    }
+   
+   public void GetHit(float damage)
+    {
+        if(hp > 0)
+        {
+            locked = true;
+            nav.ResetPath();
+            nav.isStopped = true;
+
+            CancelInvoke("Unlock");
+            CancelInvoke("DealDamage");
+
+            hp -= damage;
+
+            if (hitFX) Instantiate(hitFX, transform.position, transform.rotation);
+            if (hitSFX) audioSource.PlayOneShot(hitSFX);
+
+            if(hp > 0)
+            {
+                anim.SetTrigger("Hit");
+                Invoke("Unlock", hitDuration);
+            }
+            else
+            {
+
+                anim.SetTrigger("Death");
+
+                if (deathSFX) audioSource.PlayOneShot(deathSFX);
+
+                locked = true;
+                
+                Destroy(GetComponent<Collider>());
+                Destroy(GetComponent<NavMeshAgent>());
+                if(objectOnDeath) Instantiate(objectOnDeath, anim.transform.position + Vector3.up * 0.02f, Quaternion.identity);
+
+                //CancelInvoke("AutoDestroy");
+                //Invoke("AutoDestroy", deathDuration);
+            }
+
+            anim.SetBool("IsRunning", false);
+            state = EnemyStates.Idle;
+        }
+    }
+
+    //private void AutoDestroy() => Destroy(gameObject);
 }   
